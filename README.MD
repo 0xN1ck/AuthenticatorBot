@@ -6,11 +6,13 @@ The TOTP Generator bot enables users to generate one-time 30-second passwords ba
 ### Docker:
 1. If you don't have Docker, download and install it.
 2. Launch the project with the command `docker-compose up`.
+3. You have to run migrations once while the all project is running `docker-compose exec bot alembic upgrade head`
 
 ### Without Docker:
 1. Create a virtual environment (venv).
 2. Install the dependencies from `requirements.txt` using the command `pip install -r requirements.txt --pre`.
 3. Run the project with the command `python3 bot.py`.
+4. You have to run migrations once while the all project is running `alembic upgrade head`
 
 ## Configuration
 
