@@ -35,7 +35,16 @@ class DatabaseMiddleware(BaseMiddleware):
         async with self.session_pool() as session:
             repo = RequestsRepo(session)
 
-            user = await repo.users.get_user_by_id(event.from_user.id)
+            user = ...
+
+            if event.from_user.id in data.get('config').tg_bot.admin_ids:
+                user = await repo.users.get_or_create_user(
+                    event.from_user.id,
+                    event.from_user.full_name,
+                    event.from_user.username
+                )
+            else:
+                user = await repo.users.get_user_by_id(event.from_user.id)
 
             if not user:
                 # Пользователь не найден в базе данных
